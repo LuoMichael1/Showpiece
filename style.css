@@ -1,9 +1,10 @@
 :root {
 	--main-color1: #F0F7F4; /* Background */
-	--main-color2: black; /* text */
+	--main-color2: black;   /* text */
 	--highlight-color: #6212C2;
 }
 
+/* fonts */
 .figtree-1 {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -18,13 +19,11 @@ body {
 }
 
 h1 {
-    margin-left: 0%;
-    
+    margin-left: 0%;   
 }
 
 .grid {
     display: grid;
-    
 }
 #gridlayout {
     grid-template-columns: 27.6vh auto;
@@ -41,12 +40,7 @@ h1 {
     line-height: 0.7;
 }
 
-.sketch {
-	border: 3px solid black;
-	background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
 
 
 /* Scroll bar styling*/
@@ -61,52 +55,23 @@ h1 {
 	background-color: var(--highlight-color);
 }
 
-
-
-
-
-
+/* image styling */
+#gridcontent > div{
+    margin: 10em 10em 10em 10em;
+    width: 64em;
+    height: 36em;
+}
+.sketch {
+	border: 3px solid black;
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 #img1 {
     margin: 10em 10em 10em 10em;
     width: 64em;
     height: 36em;
 }
-#img2 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img3 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img4 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img5 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img6 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img7 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-#img8 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-
 
 

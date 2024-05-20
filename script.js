@@ -1,27 +1,13 @@
 let window_width = window.innerWidth;
 let root;
-
-// used for the picture pages where the grid needs to go down to 2 columns if the screen is small and 3 if the screen is wide
+let iterator = 1;
+let totalImages = 20;
+// 
 function getWidth() {
     new ResizeObserver(() => {
         window_width = window.innerWidth;
         changeWidth();
     }).observe(document.body)
-}
-function changeWidth() {    
-    tile_width = window_width*0.8;
-
-    if (tile_width > 700) {
-        tile_width /= 3;
-        tile_width -= 11;
-        document.getElementById("renders").style.gridAutoRows = tile_width + 'px';
-        document.getElementById("renders").style.gridTemplateColumns = 'repeat(3, '+ tile_width + 'px)';
-    }
-    else {
-        tile_width /= 2;
-        document.getElementById("renders").style.gridAutoRows = tile_width + 'px';
-        document.getElementById("renders").style.gridTemplateColumns = 'repeat(2, '+ tile_width + 'px)';
-    }
 }
 
 
@@ -57,33 +43,33 @@ function indexLoad() {
 function pictureLoad() {
     themeSetup();
     addObservers();
+    
 }
 
-//----------- animation for revealing images as the user scrolls down the page ----------------
+//----------- adds images as the user scrolls down the page ----------------
 let options = {
     root: null,
-    rootMargin: "10%",
+    rootMargin: "400px",
 };
+
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
+        
         if (entry.isIntersecting) {
-            entry.target.classList.add('reveal');
-            setTimeout(() => {entry.target.classList.remove('reveal');
-                }, 1000);
-            setTimeout(() => {entry.target.classList.add('contenthover');;
-                }, 1010);
-            removeobs(entry.target);
+            for (let i=0; i<2; i++) {
+                let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
+                document.getElementById("gridcontent").innerHTML+= el;
+                iterator += 1;
+
+                if (iterator > totalImages) {
+                    observer.unobserve(document.getElementById("footer"));
+                    break;
+                }
+            }
         }
     });
 }, options);
-function removeobs(target) {
-    observer.unobserve(target);
-}
-
 
 function addObservers() {
-    const hiddenElements = document.querySelectorAll(".content > div");
-    hiddenElements.forEach((el) => observer.observe(el));   
+    observer.observe(document.getElementById("footer"));   
 }
-
-

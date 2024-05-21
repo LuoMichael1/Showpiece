@@ -82,7 +82,7 @@ function addObservers() {
 
 
 async function readJson() {
-    const requestURL ="https://github.com/LuoMichael1/Showpiece/blob/main/images.json";
+    const requestURL ="https://luomichael1.github.io/Showpiece/images.json";
     const request = new Request(requestURL);
   
     const response = await fetch(request);

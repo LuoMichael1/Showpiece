@@ -1,7 +1,8 @@
 let window_width = window.innerWidth;
 let root;
-let iterator = 1;
 let totalImages = 20;
+let iterator = totalImages;
+
 // 
 function getWidth() {
     new ResizeObserver(() => {
@@ -57,11 +58,18 @@ const observer = new IntersectionObserver(entries => {
         
         if (entry.isIntersecting) {
             for (let i=0; i<2; i++) {
-                let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
-                document.getElementById("gridcontent").innerHTML+= el;
-                iterator += 1;
 
-                if (iterator > totalImages) {
+                // trying to use createElement and insertBefore()
+                //let el2 = document.createElement("div");
+                //let tempID = "img" + iterator;
+                //e12.setAttribute("id", tempID);
+                //e12.setAttribute("class", "sketch");
+
+                let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
+                document.getElementById("gridcontent").innerHTML+=el;
+                iterator -= 1;
+
+                if (iterator == 0) {
                     observer.unobserve(document.getElementById("footer"));
                     break;
                 }

@@ -44,6 +44,7 @@ function indexLoad() {
 function pictureLoad() {
     themeSetup();
     addObservers();
+    readJson()
     
 }
 
@@ -58,12 +59,6 @@ const observer = new IntersectionObserver(entries => {
         
         if (entry.isIntersecting) {
             for (let i=0; i<2; i++) {
-
-                // trying to use createElement and insertBefore()
-                //let el2 = document.createElement("div");
-                //let tempID = "img" + iterator;
-                //e12.setAttribute("id", tempID);
-                //e12.setAttribute("class", "sketch");
 
                 let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
                 document.getElementById("gridcontent").innerHTML+=el;
@@ -80,4 +75,18 @@ const observer = new IntersectionObserver(entries => {
 
 function addObservers() {
     observer.observe(document.getElementById("footer"));   
+}
+
+
+
+
+
+async function readJson() {
+    const requestURL ="https://github.com/LuoMichael1/Showpiece/blob/main/images.json";
+    const request = new Request(requestURL);
+  
+    const response = await fetch(request);
+    const data = await response.json();
+    
+    console.log(data);
 }

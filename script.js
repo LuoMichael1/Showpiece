@@ -41,11 +41,12 @@ function changeTheme() {
 function indexLoad() {
     themeSetup();
 }
+let data;
 function pictureLoad() {
     themeSetup();
     addObservers();
-    readJson()
-    
+    data=readJson();
+    console.log("hi" + data);
 }
 
 //----------- adds images as the user scrolls down the page ----------------
@@ -63,7 +64,9 @@ const observer = new IntersectionObserver(entries => {
                 let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
                 document.getElementById("gridcontent").innerHTML+=el;
                 iterator -= 1;
-
+                
+                console.log(data[0]);
+                
                 if (iterator == 0) {
                     observer.unobserve(document.getElementById("footer"));
                     break;
@@ -86,7 +89,13 @@ async function readJson() {
     const request = new Request(requestURL);
   
     const response = await fetch(request);
-    const data = await response.json();
-    
+    const data =  JSON.parse(await response.json());
     console.log(data);
+    
+    return data;
+}
+
+async function applyStyle(id) {
+    await console.log(data);
+
 }

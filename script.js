@@ -3,15 +3,6 @@ let root;
 let totalImages = 20;
 let iterator = totalImages;
 
-/*
-function getWidth() {
-    new ResizeObserver(() => {
-        window_width = window.innerWidth;
-        changeWidth();
-    }).observe(document.body)
-}
-*/
-
 // ------------- dark mode and light mode ----------------------
 function themeSetup() {
     root = document.querySelector(':root');
@@ -45,7 +36,6 @@ let data;
 function pictureLoad() {
     themeSetup();
     addObservers();
-    readJson();
 }
 
 //----------- adds images as the user scrolls down the page ----------------
@@ -53,62 +43,35 @@ let options = {
     root: null,
     rootMargin: "400px",
 };
-/*
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        
-        if (entry.isIntersecting) {
-            // adds two new images
-            for (let i=0; i<2; i++) {
-
-                if (iterator > 0) {
-                    let el = '<div id="img'+iterator+'" class="sketch" style="background-image: url(images/img'+iterator+'.webp);"></div>';
-                    document.getElementById("gridcontent").innerHTML+=el;
-                    
-                    iterator -= 1;
-                    document.getElementById("img" + iterator).style.width = "" + imgStyle[iterator][1] + "em";
-                    document.getElementById("img" + iterator).style.height = "" + imgStyle[iterator][2] + "em";
-                    document.getElementById("img" + iterator).style.margin = "" + imgStyle[iterator][3] + "em " + imgStyle[iterator][4] + "em " + imgStyle[iterator][5] + "em " + imgStyle[iterator][6] + "em ";
-                }
-                else {
-                    observer.unobserve(document.getElementById("footer"));
-                    break;
-                }
-            }
-        }
-    });
-}, options);
-*/
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             for (let i = 0; i < 2; i++) {
+                console.log(10);
+                console.log(iterator);
                 if (iterator > 0) {
+                    console.log(1);
                     // Create a new image element
                     let img = document.createElement('div');
                     img.id = "img" + iterator;
                     img.className = "sketch";
                     img.style.backgroundImage = "url(images/img" + iterator + ".webp)";
                     
+                    iterator--;
+                    img.style.width = imgStyle[iterator].width + "em";
+                    img.style.height = imgStyle[iterator].height + "em";
+                    img.style.margin = imgStyle[iterator].margL + "em " + imgStyle[iterator].margR + "em " + imgStyle[iterator].margT + "em " + imgStyle[iterator].margB + "em";
+
                     // Append the image element to the grid content
                     document.getElementById("gridcontent").appendChild(img);
                     
-                    // Decrement iterator
-                    iterator--;
-
-                    try {
-                    //console.log(imgStyle[1] + "em");
-                    //Apply styles
-                    img.style.width = imgStyle[iterator][1] + "em";
-                    img.style.height = imgStyle[iterator][2] + "em";
-                    img.style.margin = imgStyle[iterator][3] + "em " + imgStyle[iterator][4] + "em " + imgStyle[iterator][5] + "em " + imgStyle[iterator][6] + "em";
-                    }
-                    catch(e) {
-                        console.log(e);
-                    }
                     
-                } else {
+                    
+                } 
+                else {
+                    console.log(2);
+                    observer.unobserve(document.getElementById("footer"));
                     break;
                 }
             }
@@ -127,7 +90,28 @@ function readJson() {
         .then((json) => applyStyle(json));
 }
 
-let imgStyle
+let imgStyle = [
+    {"img":"1", "width":64, "height":36, "margL":10, "margR":10, "margT":10, "margB":10},
+    {"img":"2", "width":64, "height":36, "margL":9, "margR":10, "margT":10, "margB":10},
+    {"img":"3", "width":64, "height":36, "margL":8, "margR":10, "margT":10, "margB":10},
+    {"img":"4", "width":64, "height":36, "margL":7, "margR":10, "margT":10, "margB":10},
+    {"img":"5", "width":64, "height":36, "margL":6, "margR":10, "margT":10, "margB":10},
+    {"img":"6", "width":64, "height":36, "margL":5, "margR":10, "margT":10, "margB":10},
+    {"img":"7", "width":64, "height":36, "margL":4, "margR":10, "margT":10, "margB":10},
+    {"img":"8", "width":64, "height":36, "margL":3, "margR":10, "margT":10, "margB":10},
+    {"img":"9", "width":64, "height":36, "margL":2, "margR":10, "margT":10, "margB":10},
+    {"img":"10", "width":64, "height":36, "margL":1, "margR":10, "margT":10, "margB":10},
+    {"img":"11", "width":64, "height":36, "margL":10, "margR":10, "margT":10, "margB":10},
+    {"img":"12", "width":64, "height":36, "margL":9, "margR":10, "margT":10, "margB":10},
+    {"img":"13", "width":64, "height":36, "margL":8, "margR":10, "margT":10, "margB":10},
+    {"img":"14", "width":64, "height":36, "margL":7, "margR":10, "margT":10, "margB":10},
+    {"img":"15", "width":64, "height":36, "margL":6, "margR":10, "margT":10, "margB":10},
+    {"img":"16", "width":36, "height":64, "margL":5, "margR":10, "margT":10, "margB":10},
+    {"img":"17", "width":64, "height":36, "margL":4, "margR":10, "margT":10, "margB":10},
+    {"img":"18", "width":64, "height":36, "margL":3, "margR":10, "margT":10, "margB":10},
+    {"img":"19", "width":64, "height":36, "margL":2, "margR":10, "margT":10, "margB":10},
+    {"img":"20", "width":64, "height":36, "margL":1, "margR":10, "margT":10, "margB":10}
+];
 function applyStyle(file) {
     imgStyle = file; 
     console.log(imgStyle);

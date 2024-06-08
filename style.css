@@ -55,23 +55,15 @@ h1 {
 	background-color: var(--highlight-color);
 }
 
-/* image styling */
+/* image styling 
 #gridcontent > div{
     margin: 10em 10em 10em 10em;
     width: 64em;
     height: 36em;
-}
+}*/
 .sketch {
 	border: 3px solid black;
 	background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
-
-#img1 {
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}
-
-

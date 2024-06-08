@@ -32,6 +32,12 @@ function changeTheme() {
 function pictureLoad() {
     themeSetup();
     addObservers();
+
+    // load the first 5 images right away
+    for (let i = 0; i < 5; i++) {
+        addImage(iterator);
+        iterator--;
+    }
 }
 
 //----------- adds images as the user scrolls down the page ----------------
@@ -39,34 +45,34 @@ let options = {
     root: null,
     rootMargin: "400px",
 };
+function addImage(iterator) {
+    // Create a new image element
+    let img = document.createElement('div');
+    img.id = "img" + iterator;
+    img.className = "sketch";
+    img.style.backgroundImage = "url(images/img" + iterator + ".webp)";
+    
+    iterator--;
+    
+    imgRatio = imgStyle[iterator].ratioW / imgStyle[iterator].ratioH; 
 
+    img.style.width = imgStyle[iterator].width + "em";
+    img.style.height = imgStyle[iterator].width/imgRatio + "em";
+    img.style.margin = imgStyle[iterator].margT + "em " + imgStyle[iterator].margR + "em " + 0 + "em " + imgStyle[iterator].margL + "em";
+
+    // Append the image element to the grid content
+    document.getElementById("gridcontent").appendChild(img);
+
+}
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            for (let i = 0; i < 2; i++) {
-                console.log(10);
-                console.log(iterator);
+
+            // addes 3 new images each time
+            for (let i = 0; i < 3; i++) {
                 if (iterator > 0) {
-                    console.log(1);
-                    // Create a new image element
-                    let img = document.createElement('div');
-                    img.id = "img" + iterator;
-                    img.className = "sketch";
-                    img.style.backgroundImage = "url(images/img" + iterator + ".webp)";
-                    
+                    addImage(iterator);
                     iterator--;
-                    
-                    imgRatio = imgStyle[iterator].ratioW / imgStyle[iterator].ratioH; 
-
-                    img.style.width = imgStyle[iterator].width + "em";
-                    img.style.height = imgStyle[iterator].width/imgRatio + "em";
-                    img.style.margin = imgStyle[iterator].margT + "em " + imgStyle[iterator].margR + "em " + 0 + "em " + imgStyle[iterator].margL + "em";
-
-                    // Append the image element to the grid content
-                    document.getElementById("gridcontent").appendChild(img);
-                    
-                    
-                    
                 } 
                 else {
                     console.log(2);

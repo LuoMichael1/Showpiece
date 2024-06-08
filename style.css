@@ -12,6 +12,10 @@
   font-style: normal;
 }
 
+html {
+  font-size: calc(1vw);
+}
+
 body {
     margin: 0;
     background-color: var(--main-color1);
@@ -25,8 +29,12 @@ h1 {
 .grid {
     display: grid;
 }
+#grid {
+    grid-template-rows: auto auto;
+}
+
 #gridlayout {
-    grid-template-columns: 27.6vh auto;
+    grid-template-columns: 12em auto;
 }
 #gridcontent {
     grid-template-columns: auto;
@@ -34,10 +42,11 @@ h1 {
 
 .verticaltext {
     writing-mode: vertical-rl;
-    font-size: 10vh;
-    letter-spacing: 1vh;
-    margin-top: 4vh;
-    line-height: 0.7;
+    font-size: 6em;
+    letter-spacing: 0.05em;
+    margin-top: 0.3em;
+    line-height: 0;
+    padding: 0%;
 }
 
 
@@ -55,15 +64,13 @@ h1 {
 	background-color: var(--highlight-color);
 }
 
-/* image styling 
-#gridcontent > div{
-    margin: 10em 10em 10em 10em;
-    width: 64em;
-    height: 36em;
-}*/
 .sketch {
 	border: 3px solid black;
 	background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#footer {
+    margin-top: 10em;
 }

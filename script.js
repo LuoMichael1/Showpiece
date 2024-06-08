@@ -2,6 +2,7 @@ let window_width = window.innerWidth;
 let root;
 let totalImages = 20;
 let iterator = totalImages;
+let imgRatio = 0;
 
 // ------------- dark mode and light mode ----------------------
 function themeSetup() {
@@ -28,11 +29,6 @@ function changeTheme() {
         localStorage.setItem("theme", "1");
     }
 }
-
-function indexLoad() {
-    themeSetup();
-}
-let data;
 function pictureLoad() {
     themeSetup();
     addObservers();
@@ -59,9 +55,12 @@ const observer = new IntersectionObserver(entries => {
                     img.style.backgroundImage = "url(images/img" + iterator + ".webp)";
                     
                     iterator--;
+                    
+                    imgRatio = imgStyle[iterator].ratioW / imgStyle[iterator].ratioH; 
+
                     img.style.width = imgStyle[iterator].width + "em";
-                    img.style.height = imgStyle[iterator].height + "em";
-                    img.style.margin = imgStyle[iterator].margL + "em " + imgStyle[iterator].margR + "em " + imgStyle[iterator].margT + "em " + imgStyle[iterator].margB + "em";
+                    img.style.height = imgStyle[iterator].width/imgRatio + "em";
+                    img.style.margin = imgStyle[iterator].margT + "em " + imgStyle[iterator].margR + "em " + 0 + "em " + imgStyle[iterator].margL + "em";
 
                     // Append the image element to the grid content
                     document.getElementById("gridcontent").appendChild(img);
@@ -91,26 +90,26 @@ function readJson() {
 }
 
 let imgStyle = [
-    {"img":"1", "width":64, "height":36, "margL":10, "margR":10, "margT":10, "margB":10},
-    {"img":"2", "width":64, "height":36, "margL":9, "margR":10, "margT":10, "margB":10},
-    {"img":"3", "width":64, "height":36, "margL":8, "margR":10, "margT":10, "margB":10},
-    {"img":"4", "width":64, "height":36, "margL":7, "margR":10, "margT":10, "margB":10},
-    {"img":"5", "width":64, "height":36, "margL":6, "margR":10, "margT":10, "margB":10},
-    {"img":"6", "width":64, "height":36, "margL":5, "margR":10, "margT":10, "margB":10},
-    {"img":"7", "width":64, "height":36, "margL":4, "margR":10, "margT":10, "margB":10},
-    {"img":"8", "width":64, "height":36, "margL":3, "margR":10, "margT":10, "margB":10},
-    {"img":"9", "width":64, "height":36, "margL":2, "margR":10, "margT":10, "margB":10},
-    {"img":"10", "width":64, "height":36, "margL":1, "margR":10, "margT":10, "margB":10},
-    {"img":"11", "width":64, "height":36, "margL":10, "margR":10, "margT":10, "margB":10},
-    {"img":"12", "width":64, "height":36, "margL":9, "margR":10, "margT":10, "margB":10},
-    {"img":"13", "width":64, "height":36, "margL":8, "margR":10, "margT":10, "margB":10},
-    {"img":"14", "width":64, "height":36, "margL":7, "margR":10, "margT":10, "margB":10},
-    {"img":"15", "width":64, "height":36, "margL":6, "margR":10, "margT":10, "margB":10},
-    {"img":"16", "width":36, "height":64, "margL":5, "margR":10, "margT":10, "margB":10},
-    {"img":"17", "width":64, "height":36, "margL":4, "margR":10, "margT":10, "margB":10},
-    {"img":"18", "width":64, "height":36, "margL":3, "margR":10, "margT":10, "margB":10},
-    {"img":"19", "width":64, "height":36, "margL":2, "margR":10, "margT":10, "margB":10},
-    {"img":"20", "width":64, "height":36, "margL":1, "margR":10, "margT":10, "margB":10}
+    {"img":"1", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"2", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"3", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"4", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"5", "ratioW":16, "ratioH":9, "width":20, "margL":10, "margR":10, "margT":10},
+    {"img":"6", "ratioW":675, "ratioH":1200, "width":32, "margL":10, "margR":10, "margT":10},
+    {"img":"7", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"8", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"9", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"10", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"11", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"12", "ratioW":16, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"13", "ratioW":20, "ratioH":9, "width":64, "margL":10, "margR":10, "margT":10},
+    {"img":"14", "ratioW":1095, "ratioH":1414, "width":64, "margL":15, "margR":10, "margT":10},
+    {"img":"15", "ratioW":1200, "ratioH":1697, "width":25, "margL":10, "margR":10, "margT":10},
+    {"img":"16", "ratioW":1200, "ratioH":1697, "width":20, "margL":55, "margR":10, "margT":10},
+    {"img":"17", "ratioW":16, "ratioH":9, "width":40, "margL":10, "margR":10, "margT":10},
+    {"img":"18", "ratioW":16, "ratioH":9, "width":60, "margL":5, "margR":10, "margT":10},
+    {"img":"19", "ratioW":1, "ratioH":1, "width":40, "margL":20, "margR":10, "margT":20},
+    {"img":"20", "ratioW":235, "ratioH":108, "width":70, "margL":8, "margR":10, "margT":10},
 ];
 function applyStyle(file) {
     imgStyle = file; 
